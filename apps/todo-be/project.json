@@ -28,6 +28,12 @@
       "options": {
         "jestConfig": "apps/todo-be/jest.config.ts"
       }
+    },
+    "drizzle-generate": {
+      "command": "drizzle-kit generate --config apps/todo-be/drizzle.config.ts"
+    },
+    "drizzle-migrate": {
+      "command": "drizzle-kit migrate --config apps/todo-be/drizzle.config.ts"
     }
   }
 }
