@@ -28,17 +28,22 @@ export class UsersService {
   }
 
   async login(user: { email: string; password: string }) {
-    const result = await this.db
-      .select()
-      .from(users)
-      .where(eq(users.email, user.email));
-    if (result.length === 0) {
+    try {
+      const result = await this.db
+        .select()
+        .from(users)
+        .where(eq(users.email, user.email));
+      if (result.length === 0) {
+        throw new UnauthorizedException('User not found');
+      }
+      const isMatch = await bcrypt.compare(user.password, result[0].password);
+      if (!isMatch) {
+        throw new UnauthorizedException('User not found');
+      }
+      return result[0].resourceId;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
       throw new UnauthorizedException('User not found');
     }
-    const isMatch = await bcrypt.compare(user.password, result[0].password);
-    if (!isMatch) {
-      throw new UnauthorizedException('User not found');
-    }
-    return result[0].resourceId;
   }
 }
