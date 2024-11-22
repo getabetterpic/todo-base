@@ -1,1 +1,1 @@
-export const DATABASE = 'todo-base';
+export const DATABASE = 'database';
