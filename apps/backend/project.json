@@ -1,7 +1,7 @@
 {
-  "name": "todo-be",
+  "name": "backend",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/todo-be/src",
+  "sourceRoot": "apps/backend/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -10,15 +10,15 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "todo-be:build",
+        "buildTarget": "backend:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "todo-be:build:development"
+          "buildTarget": "backend:build:development"
         },
         "production": {
-          "buildTarget": "todo-be:build:production"
+          "buildTarget": "backend:build:production"
         }
       }
     },
@@ -26,14 +26,14 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/todo-be/jest.config.ts"
+        "jestConfig": "apps/backend/jest.config.ts"
       }
     },
     "drizzle-generate": {
-      "command": "drizzle-kit generate --config apps/todo-be/drizzle.config.ts"
+      "command": "drizzle-kit generate --config apps/backend/drizzle.config.ts"
     },
     "drizzle-migrate": {
-      "command": "drizzle-kit migrate --config apps/todo-be/drizzle.config.ts"
+      "command": "drizzle-kit migrate --config apps/backend/drizzle.config.ts"
     }
   }
 }
